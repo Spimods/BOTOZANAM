@@ -21,7 +21,10 @@ def timer(end_date):
         print()
     else:
         time_remaining = end_date - current_time
-        return time_remaining
+        days = time_remaining.days
+        hours, remainder = divmod(time_remaining.seconds, 3600)
+        minutes, _ = divmod(remainder, 60)
+        return "{} jours, {} heures, {} minutes".format(days, hours, minutes)
 
 async def generator_img(player_data_1, player_data_2, player_data_3):
     image_width = 1400
