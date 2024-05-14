@@ -22,10 +22,6 @@ async def generator_img():
         database=os.getenv("DB")
     )
     cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) FROM ctfuser")
-    result = cursor.fetchone()
-    nombre_utilisateurs = result[0]
-    await updateNumber(nombre_utilisateurs)
     cursor.execute("""
         SELECT
             nom,
@@ -162,11 +158,16 @@ async def generator_img():
             draw_2.text((x, player_y), info, fill=text_color, font=font, spacing=3)
         player_position += 1
     image_3.save("classement3.png")
+    cursor.execute("SELECT COUNT(*) FROM ctfuser")
+    result = cursor.fetchone()
+    nombre_utilisateurs = result[0]
+    await updateNumber(nombre_utilisateurs, player_data_1[0][0])
+
     cursor.close()
     conn.close()
 
 
-async def updateNumber(nombre_utilisateurs):
+async def updateNumber(nombre_utilisateurs, python):
     channel = client.get_channel(1235582369830932560)
     message = f"🔥 | Utilisateurs : {str(nombre_utilisateurs)}"
     await channel.edit(name=message)
@@ -181,7 +182,7 @@ async def updateNumber(nombre_utilisateurs):
     await channel3.edit(name=message3)
 
     channel4 = client.get_channel(1239899944035418172)
-    message4 = f"🐍｜ Python : {str(12)}"
+    message4 = f"🐍｜ Python : {str(python)}"
     await channel4.edit(name=message4)
 
     channel5 = client.get_channel(1239900208528101497)
