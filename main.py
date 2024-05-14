@@ -153,9 +153,7 @@ async def send_embed_with_photos():
             player_flags = [row[1]]
             player_times = [row[2]]
             player_data_3[player_name] = {"flags": player_flags, "times": player_times}
-
         await generator_img(player_data_1, player_data_2, player_data_3)
-
         cursor.close()
         conn.close()
 
