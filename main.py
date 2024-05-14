@@ -169,7 +169,7 @@ async def updateNumber(nombre_utilisateurs):
     channel = client.get_channel(1235582369830932560)
     await channel.connect()
     voice_channel = client.voice_clients[0]
-    message = f"🔥 ｜ Utilisateurs : {nombre_utilisateurs}"
+    message = f"🔥 | Utilisateurs : {nombre_utilisateurs}"
     await voice_channel.edit(name=message)
 
 async def send_embed_with_photos():
