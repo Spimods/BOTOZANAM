@@ -163,6 +163,7 @@ async def send_embed_with_photos():
         for file_name in photo_files:
             if os.path.exists(file_name):
                 os.remove(file_name)
+        await send_embed_with_photos()
 
 
 @client.event
