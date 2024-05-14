@@ -3,7 +3,7 @@ import asyncio
 from PIL import Image, ImageDraw, ImageFont
 import mysql.connector
 import os
-import pynacl
+import nacl
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -168,7 +168,6 @@ async def generator_img():
 
 async def updateNumber(nombre_utilisateurs):
     channel = client.get_channel(1235582369830932560)
-    await channel.connect()
     message = f"🔥 | Utilisateurs : {str(nombre_utilisateurs)}"
     await channel.edit(name=message)
 
