@@ -5,7 +5,6 @@ import mysql.connector
 import os
 
 
-VOTRE_ID_DE_CHANNEL = os.getenv("CHANNEL")
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -168,7 +167,7 @@ async def generator_img():
 
 async def send_embed_with_photos():
     await generator_img()
-    channel = client.get_channel(VOTRE_ID_DE_CHANNEL)
+    channel = client.get_channel(1239873140553678849)
     print(channel)
     embed = discord.Embed(title="", description="", color=0x999999)
     for file in photo_files:
