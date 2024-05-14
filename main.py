@@ -168,7 +168,6 @@ async def on_ready():
 
 @client.event
 async def on_disconnect():
-    # Supprimer les images à la fin de l'exécution
     for file_name in photo_files:
         if os.path.exists(file_name):
             os.remove(file_name)
