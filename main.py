@@ -160,16 +160,14 @@ async def send_embed_with_photos():
         conn.close()
 
         await asyncio.sleep(120)
+        for file_name in photo_files:
+            if os.path.exists(file_name):
+                os.remove(file_name)
+
 
 @client.event
 async def on_ready():
     print('Connecté en tant que', client.user)
     await send_embed_with_photos()
-
-@client.event
-async def on_disconnect():
-    for file_name in photo_files:
-        if os.path.exists(file_name):
-            os.remove(file_name)
 
 client.run(os.getenv("TOKEN"))
