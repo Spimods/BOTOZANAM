@@ -171,6 +171,17 @@ async def updateNumber(nombre_utilisateurs):
     message = f"🔥 | Utilisateurs : {str(nombre_utilisateurs)}"
     await channel.edit(name=message)
 
+    channel2 = client.get_channel(1187758370380337202)
+    online_count = sum(member.status != discord.Status.offline for member in client.get_all_members())
+    message2 = f"🟢｜ En ligne : {str(online_count)}"
+    await channel2.edit(name=message2)
+
+    channel3 = client.get_channel(1187449742138032179)
+    member_count = client.get_all_members()
+    message3 = f"✨｜ Membres : {str(member_count)}"
+    await channel3.edit(name=message3)
+
+
 async def send_embed_with_photos():
     await generator_img()
     channel = client.get_channel(1239873140553678849)
@@ -181,7 +192,7 @@ async def send_embed_with_photos():
             photo = discord.File(f)
             embed.set_image(url=f"attachment://{file}")
             await channel.send(embed=embed, file=photo)
-    await asyncio.sleep(20)
+    await asyncio.sleep(120)
     await send_embed_with_photos()
 
 @client.event
