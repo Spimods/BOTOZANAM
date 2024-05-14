@@ -71,6 +71,7 @@ async def generator_img(player_data_1, player_data_2, player_data_3):
                 x = column_header_position[0] + sum(column_header_spacing[:j]) if i != 3 else column_header_position[0] + sum(column_header_spacing2[:j])
                 draw.text((x, player_y), info, fill=text_color, font=font, spacing=3)
             player_position += 1
+        
         image.save(file_name)
 
 async def send_embed_with_photos():
@@ -164,5 +165,12 @@ async def send_embed_with_photos():
 async def on_ready():
     print('Connecté en tant que', client.user)
     await send_embed_with_photos()
+
+@client.event
+async def on_disconnect():
+    # Supprimer les images à la fin de l'exécution
+    for file_name in photo_files:
+        if os.path.exists(file_name):
+            os.remove(file_name)
 
 client.run(os.getenv("TOKEN"))
