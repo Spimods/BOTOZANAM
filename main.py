@@ -53,9 +53,13 @@ async def generator_img(player_data_1, player_data_2, player_data_3):
         
         draw.text(title_position, title, fill=text_color, font=font)
         
-        for i, header in enumerate(column_headers):
-            draw.text((column_header_position[0] + sum(column_header_spacing[:i]), column_header_position[1]), header, fill=text_color, font=font)
-        
+        if i == 1 or i == 2:
+            for i, header in enumerate(column_headers):
+                draw.text((column_header_position[0] + sum(column_header_spacing[:i]), column_header_position[1]), header, fill=text_color, font=font)
+        else:
+            for i, header in enumerate(column_headers):
+                draw.text((column_header_position[0] + sum(column_header_spacing[:i]), column_header_spacing2[1]), header, fill=text_color, font=font)
+
         player_position = 1
         row_spacing = 40
         for player, data in player_data.items():
