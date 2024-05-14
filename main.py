@@ -47,6 +47,7 @@ async def generator_img():
         player_flags = [row[1], row[2], row[3]]
         player_times = [row[4], row[5], row[6]]
         player_data_1[player_name] = {"flags": player_flags, "times": player_times}
+    name, first_value = next(iter(player_data_1.items()))
     image_width = 1400
     image_height = 400
     background_color = (255, 255, 255)
@@ -105,6 +106,7 @@ async def generator_img():
         player_flags = [row[1], row[2], row[3]]
         player_times = [row[4], row[5], row[6]]
         player_data_2[player_name] = {"flags": player_flags, "times": player_times}
+    name2, first_value = next(iter(player_data_2.items()))
     image_2 = Image.new("RGB", (image_width, image_height), background_color)
     image_2.paste(background_image, (0, 0))
     draw_2 = ImageDraw.Draw(image_2)
@@ -139,6 +141,7 @@ async def generator_img():
         player_flags = [row[1]]
         player_times = [row[2]]
         player_data_3[player_name] = {"flags": player_flags, "times": player_times}
+    name3, first_value = next(iter(player_data_3.items()))
     column_header_spacing2 = [350, 390, 270, 410]
     column_headers2 = ["Position", "Nom", "Flag 1","Time 1"]
     image_3 = Image.new("RGB", (image_width, image_height), background_color)
@@ -161,13 +164,13 @@ async def generator_img():
     cursor.execute("SELECT COUNT(*) FROM ctfuser")
     result = cursor.fetchone()
     nombre_utilisateurs = result[0]
-    await updateNumber(nombre_utilisateurs, player_data_1[0][0])
+    await updateNumber(nombre_utilisateurs, name, name2, name3)
 
     cursor.close()
     conn.close()
 
 
-async def updateNumber(nombre_utilisateurs, python):
+async def updateNumber(nombre_utilisateurs, python, prog, rsociaux):
     channel = client.get_channel(1235582369830932560)
     message = f"🔥 | Utilisateurs : {str(nombre_utilisateurs)}"
     await channel.edit(name=message)
@@ -186,11 +189,11 @@ async def updateNumber(nombre_utilisateurs, python):
     await channel4.edit(name=message4)
 
     channel5 = client.get_channel(1239900208528101497)
-    message5 = f"🦿｜ Programmation : {str(12)}"
+    message5 = f"🦿｜ Programmation : {str(prog)}"
     await channel5.edit(name=message5)
 
     channel6 = client.get_channel(1239901146978586685)
-    message6 = f"💻｜ Reseaux sociaux : {str(12)}"
+    message6 = f"💻｜ Reseaux sociaux : {str(rsociaux)}"
     await channel6.edit(name=message6)
 
 async def send_embed_with_photos():
