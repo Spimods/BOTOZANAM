@@ -181,6 +181,17 @@ async def updateNumber(nombre_utilisateurs):
     message3 = f"✨｜ Membres : {str(member_count)}"
     await channel3.edit(name=message3)
 
+    channel4 = client.get_channel(1239899944035418172)
+    message4 = f"🐍｜ Python : {str(member_count)}"
+    await channel4.edit(name=message4)
+
+    channel5 = client.get_channel(1239900208528101497)
+    message5 = f"🦿｜ Programmation : {str(member_count)}"
+    await channel5.edit(name=message5)
+
+    channel6 = client.get_channel(1239901146978586685)
+    message6 = f"💻｜ Reseaux sociaux : {str(member_count)}"
+    await channel6.edit(name=message6)
 
 async def send_embed_with_photos():
     await generator_img()
