@@ -4,8 +4,6 @@ from PIL import Image, ImageDraw, ImageFont
 import mysql.connector
 import os
 
-
-
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
@@ -23,6 +21,10 @@ async def generator_img():
         database=os.getenv("DB")
     )
     cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM ctfuser")
+    result = cursor.fetchone()
+    nombre_utilisateurs = result[0]
+    await updateNumber(nombre_utilisateurs)
     cursor.execute("""
         SELECT
             nom,
@@ -159,10 +161,6 @@ async def generator_img():
             draw_2.text((x, player_y), info, fill=text_color, font=font, spacing=3)
         player_position += 1
     image_3.save("classement3.png")
-    cursor.execute("SELECT COUNT(*) FROM ctfuser")
-    result = cursor.fetchone()
-    nombre_utilisateurs = result[0]
-    await updateNumber(nombre_utilisateurs)
     cursor.close()
     conn.close()
 
@@ -173,8 +171,6 @@ async def updateNumber(nombre_utilisateurs):
     voice_channel = client.voice_clients[0]
     message = f"🔥 ｜ Utilisateurs : {nombre_utilisateurs}"
     await voice_channel.send(message)
-
-
 
 async def send_embed_with_photos():
     await generator_img()
