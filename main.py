@@ -156,7 +156,6 @@ async def send_embed_with_photos():
         await generator_img(player_data_1, player_data_2, player_data_3)
         cursor.close()
         conn.close()
-
         await asyncio.sleep(120)
         for file_name in photo_files:
             if os.path.exists(file_name):
