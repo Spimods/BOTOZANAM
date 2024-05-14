@@ -141,7 +141,7 @@ async def send_embed_with_photos():
                 nom,
                 IF(flag1 = 'triche', 0, flag1) AS flag1,
                 time_flag_1
-            FROM prog
+            FROM rsociaux
             ORDER BY
                 flag1 DESC,
                 time_flag_1 ASC
