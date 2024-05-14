@@ -169,7 +169,7 @@ async def generator_img():
 async def send_embed_with_photos():
     await generator_img()
     channel = client.get_channel(VOTRE_ID_DE_CHANNEL)
-    await channel.purge(limit=10)
+    print(channel)
     embed = discord.Embed(title="", description="", color=0x999999)
     for file in photo_files:
         with open(file, "rb") as f:
@@ -178,6 +178,7 @@ async def send_embed_with_photos():
             await channel.send(embed=embed, file=photo)
     await asyncio.sleep(20)
     await send_embed_with_photos()
+    await channel.purge(limit=10)
 
 @client.event
 async def on_ready():
