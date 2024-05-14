@@ -4,6 +4,8 @@ from PIL import Image, ImageDraw, ImageFont
 import mysql.connector
 import os
 import nacl
+import datetime
+import time
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -13,6 +15,13 @@ photo_files = [
     "classement2.png",
     "classement3.png"
 ]
+def timer(end_date):
+    current_time = datetime.datetime.now()
+    if current_time >= end_date:
+        print()
+    else:
+        time_remaining = end_date - current_time
+        return time_remaining
 
 async def generator_img(player_data_1, player_data_2, player_data_3):
     image_width = 1400
@@ -185,6 +194,20 @@ async def send_embed_with_photos():
         await send_embed_with_photos()
 
 async def updateNumber(nombre_utilisateurs, python, prog, rsociaux):
+    annee = 2024
+    mois = 5
+    jour = 15
+    heure = 12
+    minute = 0
+    seconde = 0
+
+    date_future = datetime.datetime(annee, mois, jour, heure, minute, seconde)
+    val = timer(date_future)
+
+    channel = client.get_channel(1239966679686185020)
+    message = f"⏲️ | Timer : {str(val)}"
+    await channel.edit(name=message)
+
     channel = client.get_channel(1235582369830932560)
     message = f"🔥 | Utilisateurs : {str(nombre_utilisateurs)}"
     await channel.edit(name=message)
