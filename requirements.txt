@@ -2,4 +2,4 @@ discord.py
 mysql-connector-python
 pytz
 requests
-PIL
+pillow
