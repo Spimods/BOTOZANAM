@@ -177,8 +177,7 @@ async def updateNumber(nombre_utilisateurs):
     await channel2.edit(name=message2)
 
     channel3 = client.get_channel(1187449742138032179)
-    member_count = client.get_all_members()
-    message3 = f"✨｜ Membres : {str(member_count)}"
+    message3 = f"✨｜ Membres : {str(client.get_guild(1187287455590780948).member_count)}"
     await channel3.edit(name=message3)
 
     channel4 = client.get_channel(1239899944035418172)
