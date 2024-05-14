@@ -156,6 +156,16 @@ async def send_embed_with_photos():
         await generator_img(player_data_1, player_data_2, player_data_3)
         cursor.close()
         conn.close()
+
+        channel = client.get_channel(1239873140553678849)
+        await channel.purge(limit=10)
+        embed = discord.Embed(title="", description="", color=0x999999)
+        for file in photo_files:
+            with open(file, "rb") as f:
+                photo = discord.File(f)
+                embed.set_image(url=f"attachment://{file}")
+                await channel.send(embed=embed, file=photo)
+
         await asyncio.sleep(120)
         for file_name in photo_files:
             if os.path.exists(file_name):
