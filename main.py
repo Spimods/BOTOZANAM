@@ -159,9 +159,20 @@ async def generator_img():
             draw_2.text((x, player_y), info, fill=text_color, font=font, spacing=3)
         player_position += 1
     image_3.save("classement3.png")
+    cursor.execute("SELECT COUNT(*) FROM ctfuser")
+    result = cursor.fetchone()
+    nombre_utilisateurs = result[0]
+    updateNumber(nombre_utilisateurs)
     cursor.close()
     conn.close()
 
+
+async def updateNumber(nombre_utilisateurs):
+    channel = client.get_channel(1235582369830932560)
+    await channel.connect()
+    voice_channel = client.voice_clients[0]
+    message = f"🔥 ｜ Utilisateurs : {nombre_utilisateurs}"
+    await voice_channel.send(message)
 
 
 
