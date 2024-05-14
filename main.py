@@ -162,7 +162,7 @@ async def generator_img():
     cursor.execute("SELECT COUNT(*) FROM ctfuser")
     result = cursor.fetchone()
     nombre_utilisateurs = result[0]
-    updateNumber(nombre_utilisateurs)
+    await updateNumber(nombre_utilisateurs)
     cursor.close()
     conn.close()
 
