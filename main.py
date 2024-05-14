@@ -208,7 +208,7 @@ async def updateNumber(nombre_utilisateurs, python, prog, rsociaux):
     val = timer(date_future)
 
     channel = client.get_channel(1239966679686185020)
-    message = f"⏲️ | Timer : {str(val)}"
+    message = f"⏰ | Timer : {str(val)}"
     await channel.edit(name=message)
 
     channel = client.get_channel(1235582369830932560)
