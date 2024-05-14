@@ -154,6 +154,15 @@ async def send_embed_with_photos():
             player_times = [row[2]]
             player_data_3[player_name] = {"flags": player_flags, "times": player_times}
         await generator_img(player_data_1, player_data_2, player_data_3)
+
+        name, first_value = next(iter(player_data_1.items()))
+        name2, first_value = next(iter(player_data_2.items()))
+        name3, first_value = next(iter(player_data_3.items()))
+
+        cursor.execute("SELECT COUNT(*) FROM ctfuser")
+        result = cursor.fetchone()
+        nombre_utilisateurs = result[0]
+        await updateNumber(nombre_utilisateurs, name, name2, name3)
         cursor.close()
         conn.close()
 
@@ -165,12 +174,37 @@ async def send_embed_with_photos():
                 photo = discord.File(f)
                 embed.set_image(url=f"attachment://{file}")
                 await channel.send(embed=embed, file=photo)
-
         await asyncio.sleep(60)
         for file_name in photo_files:
             if os.path.exists(file_name):
                 os.remove(file_name)
         await send_embed_with_photos()
+
+async def updateNumber(nombre_utilisateurs, python, prog, rsociaux):
+    channel = client.get_channel(1235582369830932560)
+    message = f"🔥 | Utilisateurs : {str(nombre_utilisateurs)}"
+    await channel.edit(name=message)
+
+    channel2 = client.get_channel(1187758370380337202)
+    online_count = sum(member.status != discord.Status.offline for member in client.get_all_members())
+    message2 = f"🟢｜ En ligne : {str(online_count)}"
+    await channel2.edit(name=message2)
+
+    channel3 = client.get_channel(1187449742138032179)
+    message3 = f"✨｜ Membres : {str(client.get_guild(1187287455590780948).member_count)}"
+    await channel3.edit(name=message3)
+
+    channel4 = client.get_channel(1239899944035418172)
+    message4 = f"🐍｜ Python : {str(python)}"
+    await channel4.edit(name=message4)
+
+    channel5 = client.get_channel(1239900208528101497)
+    message5 = f"🦿｜ Programmation : {str(prog)}"
+    await channel5.edit(name=message5)
+
+    channel6 = client.get_channel(1239901146978586685)
+    message6 = f"💻｜ Reseaux sociaux : {str(rsociaux)}"
+    await channel6.edit(name=message6)
 
 
 @client.event
