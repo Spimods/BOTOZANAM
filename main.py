@@ -166,7 +166,7 @@ async def send_embed_with_photos():
                 embed.set_image(url=f"attachment://{file}")
                 await channel.send(embed=embed, file=photo)
 
-        await asyncio.sleep(120)
+        await asyncio.sleep(60)
         for file_name in photo_files:
             if os.path.exists(file_name):
                 os.remove(file_name)
