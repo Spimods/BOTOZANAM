@@ -33,16 +33,16 @@ async def generator_img(player_data_1, player_data_2, player_data_3):
     text_color = (255, 255, 255)
     background_image = Image.open("bg.png")
     background_image = background_image.resize((1400, 600))
-    
+
     font_path = "Roboto-Regular.ttf"
     font_size = 22
     font = ImageFont.truetype(font_path, font_size)
-    
+
     title_position = (50, 50)
     column_header_position = (50, 100)
     column_header_spacing = [150, 170, 110, 110, 110, 180, 180, 180]
     column_header_spacing2 = [350, 390, 270, 410]
-    
+
     for i, file_name in enumerate(photo_files, 1):
         if i == 1:
             player_data = player_data_1
@@ -58,13 +58,13 @@ async def generator_img(player_data_1, player_data_2, player_data_3):
             title = "Classement - Réseaux sociaux"
             column_headers = ["Position", "Nom", "Flag 1","Time 1"]
             player_start_y = 150
-        
+
         image = Image.new("RGB", (image_width, image_height), background_color)
         image.paste(background_image, (0, 0))
         draw = ImageDraw.Draw(image)
-        
+
         draw.text(title_position, title, fill=text_color, font=font)
-        
+
         if i == 1 or i == 2:
             for i, header in enumerate(column_headers):
                 draw.text((column_header_position[0] + sum(column_header_spacing[:i]), column_header_position[1]), header, fill=text_color, font=font)
@@ -87,7 +87,7 @@ async def generator_img(player_data_1, player_data_2, player_data_3):
                 x = column_header_position[0] + sum(column_header_spacing[:j]) if i != 3 else column_header_position[0] + sum(column_header_spacing2[:j])
                 draw.text((x, player_y), info, fill=text_color, font=font, spacing=3)
             player_position += 1
-        
+
         image.save(file_name)
 
 async def send_embed_with_photos():
@@ -200,7 +200,7 @@ async def updateNumber(nombre_utilisateurs, python, prog, rsociaux):
     annee = 2024
     mois = 5
     jour = 22
-    heure = 8
+    heure = 6
     minute = 0
     seconde = 0
 
