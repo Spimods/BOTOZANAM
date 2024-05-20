@@ -199,7 +199,7 @@ async def send_embed_with_photos():
 async def updateNumber(nombre_utilisateurs, python, prog, rsociaux):
     annee = 2024
     mois = 5
-    jour = 22
+    jour = 29
     heure = 6
     minute = 0
     seconde = 0
